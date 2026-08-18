@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="lv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>K-PUNKTS | Reģistrācija</title>
+
+    <meta
+        name="description"
+        content="K-PUNKTS pasākumu reģistrācija"
+    >
+
+    <style>
+        :root {
+            --background: #242424;
+            --surface: #303030;
+            --surface-light: #3b3b3b;
+
+            --text: #ffffff;
+            --text-muted: #bdbdbd;
+
+            --accent: #ea801a;
+            --accent-hover: #ff9938;
+
+            --border: #505050;
+            --danger: #ff5252;
+
+            --radius: 8px;
+            --max-width: 900px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            color-scheme: dark;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background: var(--background);
+            color: var(--text);
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+        }
+
+
+        /* ---------------- HEADER ---------------- */
+
+        header {
+            background: #1d1d1d;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            max-width: var(--max-width);
+            margin: auto;
+
+            padding: 18px 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            color: var(--text);
+            text-decoration: none;
+
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .brand span {
+            color: var(--accent);
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+
+        /* ---------------- PAGE ---------------- */
+
+        main {
+            max-width: var(--max-width);
+            margin: auto;
+            padding: 40px 20px 80px;
+        }
+
+        .event-header {
+            margin-bottom: 30px;
+        }
+
+        .event-type {
+            color: var(--accent);
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+
+            font-size: clamp(30px, 5vw, 46px);
+            line-height: 1.1;
+        }
+
+        .event-info {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+
+        /* ---------------- FORM CARD ---------------- */
+
+        .registration-card {
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            padding: 30px;
+        }
+
+        .registration-card h2 {
+            margin-top: 0;
+        }
+
+
+        /* ---------------- FORM ---------------- */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .required {
+            color: var(--accent);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+
+            padding: 12px 13px;
+
+            border: 1px solid var(--border);
+            border-radius: 6px;
+
+            background: var(--surface-light);
+            color: var(--text);
+
+            font: inherit;
+
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--accent);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .hint {
+            display: block;
+
+            margin-top: 6px;
+
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+
+        /* ---------------- CHECKBOX ---------------- */
+
+        .checkbox-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+
+            margin: 18px 0;
+        }
+
+        .checkbox-row input {
+            width: auto;
+            margin-top: 3px;
+        }
+
+        .checkbox-row label {
+            margin: 0;
+
+            color: var(--text-muted);
+            line-height: 1.5;
+
+            font-weight: normal;
+        }
+
+        a {
+            color: var(--accent);
+        }
+
+
+        /* ---------------- BUTTON ---------------- */
+
+        .submit-button {
+            width: 100%;
+
+            margin-top: 15px;
+            padding: 14px 20px;
+
+            border: 0;
+            border-radius: 6px;
+
+            background: var(--accent);
+            color: #111;
+
+            font-size: 16px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background: var(--accent-hover);
+        }
+
+        .submit-button:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+
+        /* ---------------- MESSAGES ---------------- */
+
+        .message {
+            display: none;
+
+            margin-top: 20px;
+            padding: 14px;
+
+            border-radius: 6px;
+        }
+
+        .message.success {
+            background: #1d4a2b;
+        }
+
+        .message.error {
+            background: #572525;
+            color: #ffbcbc;
+        }
+
+
+        /* ---------------- FOOTER ---------------- */
+
+        footer {
+            border-top: 1px solid var(--border);
+
+            color: var(--text-muted);
+            text-align: center;
+
+            padding: 30px 20px;
+
+            font-size: 13px;
+        }
+
+
+        /* ---------------- MOBILE ---------------- */
+
+        @media (max-width: 650px) {
+
+            .header-inner {
+                padding: 15px;
+            }
+
+            main {
+                padding: 30px 15px 60px;
+            }
+
+            .registration-card {
+                padding: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="header-inner">
+
+        <a
+            href="https://www.k-punkts.lv/"
+            class="brand"
+        >
+            K<span>-</span>PUNKTS
+        </a>
+
+        <a
+            href="https://www.k-punkts.lv/"
+            class="back-link"
+        >
+            ← Atpakaļ uz K-PUNKTS
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+    <!-- EVENT INFORMATION -->
+
+    <section class="event-header">
+
+        <div class="event-type">
+            Reģistrācija
+        </div>
+
+        <h1>
+            Pasākuma nosaukums
+        </h1>
+
+        <div class="event-info">
+            20.06.2026 · Latvija
+        </div>
+
+    </section>
+
+
+
+    <!-- REGISTRATION -->
+
+    <section class="registration-card">
+
+        <h2>
+            Dalībnieka informācija
+        </h2>
+
+
+        <form id="registrationForm">
+
+
+            <div class="form-grid">
+
+
+                <!-- NAME -->
+
+                <div class="field">
+
+                    <label for="vards">
+                        Vārds
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="vards"
+                        name="vards"
+                        maxlength="100"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- SURNAME -->
+
+                <div class="field">
+
+                    <label for="uzvards">
+                        Uzvārds
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="uzvards"
+                        name="uzvards"
+                        maxlength="100"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="field">
+
+                    <label for="epasts">
+                        E-pasts
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        id="epasts"
+                        name="epasts"
+                        maxlength="200"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- PHONE -->
+
+                <div class="field">
+
+                    <label for="telefons">
+                        Telefona numurs
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="telefons"
+                        name="telefons"
+                        placeholder="+371"
+                        maxlength="30"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- BIRTHDAY -->
+
+                <div class="field">
+
+                    <label for="birthday">
+                        Dzimšanas datums
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="birthday"
+                        name="birthday"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- COUNTRY -->
+
+                <div class="field">
+
+                    <label for="country">
+                        Valsts
+                        <span class="required">*</span>
+                    </label>
+
+                    <select
+                        id="country"
+                        name="country"
+                        required
+                    >
+
+                        <option value="LV">
+                            Latvija
+                        </option>
+
+                        <option value="LT">
+                            Lietuva
+                        </option>
+
+                        <option value="EE">
+                            Igaunija
+                        </option>
+
+                        <option value="OTHER">
+                            Cita
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- NOTES -->
+
+                <div class="field full">
+
+                    <label for="komentars">
+                        Piezīmes
+                    </label>
+
+                    <textarea
+                        id="komentars"
+                        name="komentars"
+                        maxlength="500"
+                    ></textarea>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- RULES -->
+
+            <div class="checkbox-row">
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                    required
+                >
+
+                <label for="terms">
+
+                    Esmu iepazinies ar pasākuma
+                    <a
+                        href="#"
+                        target="_blank"
+                    >
+                        nolikumu
+                    </a>
+                    un piekrītu tā noteikumiem.
+
+                </label>
+
+            </div>
+
+
+
+            <!-- PUBLIC RESULTS NOTICE -->
+
+            <div class="checkbox-row">
+
+                <input
+                    type="checkbox"
+                    id="publicNotice"
+                    required
+                >
+
+                <label for="publicNotice">
+
+                    Esmu informēts, ka dalībnieku sarakstā
+                    un pasākuma rezultātos var tikt publicēts
+                    mans vārds, uzvārds, distance, valsts un
+                    rezultāts.
+
+                </label>
+
+            </div>
+
+
+
+            <!-- NEWSLETTER -->
+
+            <div class="checkbox-row">
+
+                <input
+                    type="checkbox"
+                    id="news"
+                >
+
+                <label for="news">
+
+                    Vēlos saņemt informāciju par
+                    K-PUNKTS pasākumiem e-pastā.
+
+                </label>
+
+            </div>
+
+
+
+            <button
+                type="submit"
+                class="submit-button"
+                id="submitButton"
+            >
+                Pieteikties
+            </button>
+
+
+
+            <div
+                id="successMessage"
+                class="message success"
+            >
+                Pieteikums veiksmīgi nosūtīts!
+            </div>
+
+
+            <div
+                id="errorMessage"
+                class="message error"
+            >
+                Neizdevās nosūtīt pieteikumu.
+            </div>
+
+
+        </form>
+
+    </section>
+
+
+</main>
+
+
+
+<footer>
+
+    © K-PUNKTS
+
+</footer>
+
+
+
+<script type="module">
+
+    /*
+     * -------------------------------------------------------
+     * FIREBASE WILL GO HERE
+     * -------------------------------------------------------
+     *
+     * Later this section can:
+     *
+     * 1. Initialize Firebase
+     * 2. Validate the registration
+     * 3. Write PRIVATE registration information
+     * 4. Create/update the PUBLIC participant information
+     *
+     * Do not put Firebase Admin credentials or service-account
+     * credentials in this file.
+     *
+     */
+
+
+    const form =
+        document.getElementById("registrationForm");
+
+
+    form.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+
+        /*
+         * Firebase submission code will eventually go here.
+         */
+
+
+        console.log({
+            vards:
+                document.getElementById("vards").value,
+
+            uzvards:
+                document.getElementById("uzvards").value,
+
+            epasts:
+                document.getElementById("epasts").value,
+
+            telefons:
+                document.getElementById("telefons").value,
+
+            birthday:
+                document.getElementById("birthday").value,
+
+            country:
+                document.getElementById("country").value,
+
+            komentars:
+                document.getElementById("komentars").value,
+
+            news:
+                document.getElementById("news").checked
+        });
+
+
+        /*
+         * Remove this when Firebase is connected.
+         */
+
+        alert(
+            "Template works. Firebase submission is not connected yet."
+        );
+
+    });
+
+</script>
+
+
+</body>
+</html>
